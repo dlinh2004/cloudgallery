@@ -527,3 +527,6 @@ Code KHÔNG cần sửa khi chuyển sang AWS — chỉ cần thay đổi file `
 3. **S3**: Lưu trữ file, Bucket Policy, public read access
 4. **VPC**: Public/Private subnet, Internet Gateway, Security Groups
 5. **IAM**: Role-based access, EC2 instance profile, least privilege principle
+
+
+http://18.143.169.192:3000/

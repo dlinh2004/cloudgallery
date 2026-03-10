@@ -292,6 +292,10 @@ a {
     object-fit: cover;
 }
 
+.image-card .previewable-image {
+    cursor: zoom-in;
+}
+
 .image-card .card-body {
     padding: 18px;
 }
@@ -383,6 +387,49 @@ a {
     text-align: center;
     padding: 40px;
     color: #999;
+}
+
+/* ---- Image Preview (Lightbox) ---- */
+.image-preview-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.image-preview-overlay.show {
+    display: flex;
+}
+
+.image-preview-overlay img {
+    max-width: 95vw;
+    max-height: 92vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.45);
+}
+
+.image-preview-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.image-preview-close:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* ---- Responsive ---- */

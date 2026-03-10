@@ -13,6 +13,7 @@ let currentUser = null;
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     setupNavigation();
+    initImagePreview();
 
     // Kiểm tra trang hiện tại và load dữ liệu phù hợp
     const page = window.location.pathname;
@@ -226,7 +227,7 @@ async function loadGallery() {
 
         grid.innerHTML = images.map(img => `
             <div class="image-card">
-                <img src="${escapeHtml(img.image_url)}" alt="${escapeHtml(img.title)}" loading="lazy">
+                <img class="previewable-image" src="${escapeHtml(img.image_url)}" alt="${escapeHtml(img.title)}" loading="lazy">
                 <div class="card-body">
                     <h3>${escapeHtml(img.title)}</h3>
                     <p>${escapeHtml(img.description || '')}</p>
@@ -274,7 +275,7 @@ async function loadDashboard() {
 
         grid.innerHTML = images.map(img => `
             <div class="image-card">
-                <img src="${escapeHtml(img.image_url)}" alt="${escapeHtml(img.title)}" loading="lazy">
+                <img class="previewable-image" src="${escapeHtml(img.image_url)}" alt="${escapeHtml(img.title)}" loading="lazy">
                 <div class="card-body">
                     <h3>${escapeHtml(img.title)}</h3>
                     <p>${escapeHtml(img.description || '')}</p>
@@ -339,6 +340,57 @@ function hideAlerts() {
     document.querySelectorAll('.alert').forEach(el => {
         el.style.display = 'none';
     });
+}
+
+// Full-screen image preview (lightbox)
+function initImagePreview() {
+    const overlay = document.createElement('div');
+    overlay.id = 'image-preview-overlay';
+    overlay.className = 'image-preview-overlay';
+    overlay.innerHTML = `
+        <button class="image-preview-close" id="image-preview-close" aria-label="Đóng">&times;</button>
+        <img id="image-preview-img" src="" alt="Xem ảnh đầy đủ">
+    `;
+    document.body.appendChild(overlay);
+
+    document.addEventListener('click', (event) => {
+        const clickedImage = event.target.closest('.previewable-image');
+        if (clickedImage) {
+            openImagePreview(clickedImage.getAttribute('src'), clickedImage.getAttribute('alt'));
+            return;
+        }
+
+        if (event.target.id === 'image-preview-overlay' || event.target.id === 'image-preview-close') {
+            closeImagePreview();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeImagePreview();
+        }
+    });
+}
+
+function openImagePreview(src, alt) {
+    const overlay = document.getElementById('image-preview-overlay');
+    const previewImg = document.getElementById('image-preview-img');
+    if (!overlay || !previewImg || !src) return;
+
+    previewImg.src = src;
+    previewImg.alt = alt || 'Xem ảnh đầy đủ';
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImagePreview() {
+    const overlay = document.getElementById('image-preview-overlay');
+    const previewImg = document.getElementById('image-preview-img');
+    if (!overlay || !previewImg) return;
+
+    overlay.classList.remove('show');
+    previewImg.src = '';
+    document.body.style.overflow = '';
 }
 
 // Escape HTML để tránh XSS
