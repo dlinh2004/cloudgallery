@@ -49,6 +49,8 @@ if (!fs.existsSync(uploadsDir)) {
 // API routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/images', require('./routes/images'));
+app.use('/api/interactions', require('./routes/interactions'));
+app.use('/api/notifications', require('./routes/notifications'));
 
 // Serve HTML pages
 // Trang chủ

@@ -9,6 +9,11 @@ function isAuthenticated(req, res, next) {
     if (req.session && req.session.user) {
         return next(); // Đã đăng nhập → cho đi tiếp
     }
+    // API trả JSON để frontend xử lý, còn page request thì redirect như cũ.
+    if (req.path.startsWith('/api/') || req.originalUrl.startsWith('/api/')) {
+        return res.status(401).json({ error: 'Bạn cần đăng nhập để thực hiện thao tác này' });
+    }
+
     // Chưa đăng nhập → chuyển về trang login
     res.redirect('/login.html');
 }
