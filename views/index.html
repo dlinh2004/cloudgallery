@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Gallery - Trang chủ</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Thanh điều hướng -->
+    <nav class="navbar">
+        <a href="/" class="logo">☁️ Cloud<span>Gallery</span></a>
+        <div class="nav-links" id="nav-links">
+            <a href="/gallery.html">Gallery</a>
+            <a href="/login.html">Đăng nhập</a>
+            <a href="/register.html">Đăng ký</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container">
+        <div class="hero">
+            <h1>☁️ Cloud Gallery</h1>
+            <p>Chia sẻ khoảnh khắc của bạn với thế giới.<br>
+               Dự án thực hành triển khai ứng dụng web trên AWS.</p>
+            <a href="/gallery.html" class="btn">Xem Gallery</a>
+        </div>
+
+        <!-- Giới thiệu về dự án -->
+        <div style="text-align: center; padding: 40px 20px; color: #666;">
+            <h2 style="margin-bottom: 20px; color: #333;">Dự án này sử dụng</h2>
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                <div style="padding: 20px;">
+                    <div style="font-size: 36px;">💻</div>
+                    <strong>EC2</strong><br>Web Server
+                </div>
+                <div style="padding: 20px;">
+                    <div style="font-size: 36px;">🗄️</div>
+                    <strong>RDS</strong><br>MySQL Database
+                </div>
+                <div style="padding: 20px;">
+                    <div style="font-size: 36px;">📦</div>
+                    <strong>S3</strong><br>Image Storage
+                </div>
+                <div style="padding: 20px;">
+                    <div style="font-size: 36px;">🔒</div>
+                    <strong>VPC</strong><br>Network Security
+                </div>
+                <div style="padding: 20px;">
+                    <div style="font-size: 36px;">🔑</div>
+                    <strong>IAM</strong><br>Access Control
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
